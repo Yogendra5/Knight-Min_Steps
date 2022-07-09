@@ -1,19 +1,20 @@
-# Knight-Min_Steps
+# N-Queens
+PROBLEM STATEMENT:
+The N Queen problem is the task of arranging N chess queens on a NxN 
+hessboard in such a way that no two queens attack each other.
 
-Problem Statement:
-Given a square chessboard of N x N size, the position of Knight and position of a target is given.  We need to find out the minimum steps a Knight will take to reach the target position.
- 
- 
-Examples: 
-In above diagram Knight takes 3 step to reach 
-from (4, 5) to (1, 1) 
-(4, 5) -> (5, 3) -> (3, 2) -> (1, 1) 
+EXAMPLE:
+The expected result is a binary matrix with 1s for the blocks containing queens.
+The output matrix for the given 4 queen solution, for example, is as follows
+               { 0,  1,  0,  0}
+               { 0,  0,  0,  1}
+               { 1,  0,  0,  0}
+               { 0,  0,  1,  0}
 
-
-Approach:
-This problem is similar to finding the shortest path in an unweighted graph. As a result, we employ BFS to overcome this issue. 
-We try all 8 spots a Knight can reach from its current position. 
-If a reachable position hasn't been visited yet and is located within the board, we add it to the queue with a distance of one more than its parent state. 
-Finally, when the target position is popped out of the queue, we return its distance.
-The code below uses BFS to search across cells, where each cell has its own coordinate and distance from the starting node. 
-In the worst-case scenario, the code below accesses all of the board's cells, resulting in an O(N^2) time complexity.
+APPROACH:
+The objective is to place queens in different columns one by one,
+starting with the leftmost column. We check for clashes with already
+placed queens when placing a queen in a column. If we locate a row in
+the current column with no collision, we mark that row and column as part
+of the solution. We backtrack and return false if we can't discover such
+a row due to clashes.
